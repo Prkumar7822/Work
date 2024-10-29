@@ -1,0 +1,158 @@
+
+//adding the elements present in array to check with the target given
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int arr[]=new int[2];
+        for(int i=0;i<nums.length;i++){
+            for(int j=i+1;j<nums.length;j++){
+                if(nums[i]+nums[j]==target){
+                    arr[0]=i;
+                    arr[1]=j;
+                }
+            }
+        }
+        return arr;
+
+
+    }
+}
+
+
+//Longest substring present in a string
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        	List<Character> obj=new ArrayList<>();
+		int size=0;
+		for(int j=0;j<s.length();j++) {
+		for(int i=j;i<s.length();i++) {
+			if(obj.contains(s.charAt(i))) {
+				break;
+			}
+			else {
+				obj.add(s.charAt(i));
+			}
+			
+		}
+        size=(obj.size()>size)?obj.size():size;
+	
+		
+        
+        }
+		obj.clear();
+
+		return size;
+
+    }
+}
+
+
+
+//Median of two sorted arrays
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        double median = 0.0;
+		List<Integer> obj=new ArrayList<Integer>();
+		
+		for(int i:nums1) {
+			obj.add(i);
+		}
+		for(int k:nums2) {
+			obj.add(k);
+		}
+		
+		
+		Collections.sort(obj);
+		if(obj.size()==1){
+            median=obj.get(0);
+        }
+		else if(obj.size()%2!=0) {
+			median=(obj.size()%2)+(obj.size()/2);
+		}
+        else {
+			int first=obj.size()/2;
+			int second=first-1;
+			
+			median=(obj.get(first)+obj.get(second))/2.0;
+    }
+    return median;
+}}
+
+
+//reverse an integer
+class Solution {
+    public int reverse(int x) {
+        String sum="";
+        int original=x;
+        x=Math.abs(x);
+        
+        String s=String.valueOf(x);
+        for(int i=0;i<s.length();i++){
+            int rem=x%10;
+            sum+=rem;
+            x=x/10;
+        }
+        sum=sum.replaceAll("0", "");
+        Integer sum1=Integer.parseInt(sum);
+
+        if(original<0) {
+        	sum1=-sum1;
+        }
+        if(sum1==0){
+            sum1=0;
+        }
+
+return sum1;
+    
+    }
+}
+
+
+
+//polindrome number
+class Solution {
+    public boolean isPalindrome(int x) {
+        boolean b= true;
+        int original=x;
+        if(x<0){
+            b=false;
+        }
+        
+        else{
+            int sum=0;
+            while(x>0){
+                int rem=x%10;
+                sum=sum*10+rem;
+                x=x/10;
+            }
+            if(sum==original){
+                b=true;
+            }
+            else{
+                b=false;
+            }
+        }
+        return b;
+    }
+}
+
+
+
+//Integer to roman number
+class Solution {
+    public String intToRoman(int num) {
+        int nums[]={1000,900,500,400,100,90,50,40,10,9,5,4,1};
+        String symbols[]={"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+
+StringBuilder obj=new StringBuilder();
+
+for(int i=0;i<nums.length;i++){
+    while(num>=nums[i]){
+        obj.append(symbols[i]);
+        num-=nums[i];
+    }
+}
+return obj.toString();
+
+    }
+}
